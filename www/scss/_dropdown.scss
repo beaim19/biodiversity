@@ -1,0 +1,51 @@
+
+// Dropdown
+.dropdown-menu.show{
+  background-color: $body-bg;
+  }
+  
+.bootstrap-select>.dropdown-toggle{
+  background-color: #fff;
+  color: $primary;
+}
+
+.dropdown-menu .dropdown-item{
+  color: $back-color !important;
+  
+  &:hover{
+    background-color: $selected-color;
+    color: $back-color !important;
+  }
+  
+  
+}
+.dropdown-menu .dropdown-item.active{
+  background-color: darken($primary, 10%);
+  color: $back-color !important;
+}
+
+.dropdown-menu>ul{
+  color: $back-color !important;
+  
+  &:hover{
+    background-color: $selected-color;
+  color: $back-color !important;
+  }
+}
+
+
+// ensure the about dropdown does not overflow to the right
+.navbar .dropdown-menu {
+    right: 0;
+    left: auto;
+    max-width: 100vw;
+    overflow-x: auto;
+  }
+  
+.control-label{
+  font-weight: bold;
+}
+
+
+      
+      

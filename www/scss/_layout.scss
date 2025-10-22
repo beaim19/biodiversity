@@ -1,0 +1,98 @@
+
+.page-nav-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+.container-fluid {
+    flex: 1 0 auto;
+  }
+  
+/*flex-grow: 1; Allow this element to grow and fill any extra space in the container
+flex-shrink: 0; Don't shrink this element smaller than its content
+flex-basis: auto; Use the element’s natural size as its starting point */
+
+footer {
+    flex-shrink: 0;
+  }
+
+
+// background top header bar
+.navbar {
+  background-color: $primary !important;
+  padding: 0;
+}
+
+// size of the box with the logo, and whole bar
+.navbar-header, .navbar-brand{
+  max-height: 50px !important;
+}
+
+// where the logo is contained
+.logo-container{
+  padding-top: 2%;
+}
+
+// Some space between logo and tabs
+.navbar-collapse{
+  margin-left: 2%;
+  margin-block: 1%;
+}
+
+// Faded logo and size
+.logo {
+  max-height: 50px;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  opacity: 0.5;
+  max-width: 100%;
+  transition: opacity 0.3s ease-in-out; 
+  //filter: grayscale(100%) brightness(1.2); 
+  
+  &:hover{
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+
+// color side bar (container and filter)
+.bslib-main, .sidebar{
+  background-color: $primary !important; 
+}
+
+.bslib-sidebar-layout>.sidebar>.sidebar-content{
+  background-color: $primary !important; 
+  color: #fff;
+}
+
+// little arrow to collapse sidebar
+.collapse-icon{
+  color: $back-color;
+}
+
+
+.bslib-sidebar-layout.sidebar-collapsed>.collapse-toggle{
+  background-color: $selected-color !important;
+}
+
+// body (where graphs and table are)
+.html-fill-container > .html-fill-item{
+  background-color: $back-color !important; //body-color
+  margin: 0rem, 1rem, 1rem, 1rem;
+}
+
+.tab-content{
+  background-color: $body-color;
+}
+
+
+
+
+
+ 
+
+
+ 

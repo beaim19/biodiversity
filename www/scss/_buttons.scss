@@ -1,0 +1,56 @@
+
+.btn.radiobtn.btn-custom-class{
+    color: white !important;
+    border: none !important;
+    border-radius: 0.1rem 0.1rem !important;
+
+    &:hover {
+      background-color: $selected-color;
+      color: #fff !important;
+      border-radius: 0.1rem 0.1rem;
+      border: none !important;
+    }
+
+}
+
+
+
+.btn-group-vertical>.btn-check:checked+.btn{
+  background-color: darken($primary, 10%) !important;
+}
+
+/*.btn .btn-primary .btn-sm{
+  border-color: $selected-color;
+  color: darken($selected-color, 10%);
+}*/
+
+.action-button .bttn .bttn-unite .bttn-md .bttn-default{
+  border-color: $primary;
+  color: darken($primary, 10%);
+}
+
+.my_btn{
+  background-color: lighten($primary, 10%) !important;
+  color: #fff !important;
+  
+  &:hover{
+    background-color: $selected-color !important;
+    color: #fff !important;
+  }
+}
+
+
+.box-controlers{
+  background-color: #fff;
+  margin-bottom: 1rem;
+  padding: 0.2rem;
+   box-shadow: 3px 4px 5px 0 $selected-color, 0 4px 20px 5px $primary;
+}
+
+.panel-date{
+  margin-left: 5rem;
+  padding: 0.1rem;
+  color: $primary;
+  font-weight: bold;
+  font-size: 1.5rem;
+}

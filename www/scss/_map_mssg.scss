@@ -1,0 +1,65 @@
+
+#map-wrap{
+  position: relative;
+}
+
+.map_btn_sp{
+  position: absolute;
+  z-index: 1500;
+  pointer-events: none;
+  top: 12px; right: 12px;
+  
+}
+.map_btn_sp > * {
+  pointer-events: auto;
+  background-color: $primary;
+  color: #fff;
+  
+  &:hover{
+    background-color: $selected-color;
+    color: #fff;
+  }
+}
+
+
+.overlay{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  z-index: 2000;
+  opacity: 1;
+  transition: opacity .18s ease;
+}
+
+.overlay.fade-out{
+  opacity: 0 !important;
+}
+
+
+
+.leaflet.overlaid .leaflet-control-container{display:none !important;}
+
+
+.starting-message{
+  font-size: 24px; 
+  font-weight: bold; 
+  color: #333;
+  padding: 5rem;
+  text-align: center;
+}
+
+
+// hide the zooming buttons
+.leaflet-control-container{
+  visibility: hidden;
+}
+
+.hud, .map-hint{
+  z-index: 1700 !important;
+}
+
+.modal{
+  z-index: 3000 !important;
+}

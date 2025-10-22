@@ -1,0 +1,34 @@
+
+
+// tabs when non selected and hover
+.nav-link {
+    color: white !important;
+    border: none !important;
+  }
+  
+.nav-item{
+  padding: 0 0.5rem 0 0.5rem !important;
+  
+      &:hover {
+      background-color: $selected-color;
+      color: #fff !important;
+      border-radius: 0.1rem;
+      border: none !important;
+    }
+}  
+  
+// Selected tab, and transition
+.nav-link:focus, .nav-link.active {
+  color: $back-color !important;
+  font-weight: bold;
+  padding: 0.5rem;
+  border: none !important;
+}
+
+// Remove the underline from active tabs 
+.navbar-nav .nav-link.active::after {
+   border-bottom: none !important;
+ }
+ 
+
+ 
