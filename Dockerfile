@@ -37,7 +37,9 @@ COPY renv/ ./renv/
 # Install renv and restore packages
 #RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
 # && R -e "setwd('/srv/shiny-server/my-app'); renv::restore(prompt = FALSE)"
- 
+
+ENV RENV_PATHS_LIBRARY=/srv/shiny-server/my-app/renv/library
+
  RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
  && R -e "setwd('/srv/shiny-server/my-app'); print(getwd()); list.files(); renv::restore(prompt = FALSE)"
 
