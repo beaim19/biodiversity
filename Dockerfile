@@ -46,8 +46,14 @@ COPY renv/ ./renv/
 
 
 
- RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
- && R -e "setwd('/srv/shiny-server/my-app'); print(getwd()); list.files(); renv::restore(prompt = FALSE)"
+# RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
+# && R -e "setwd('/srv/shiny-server/my-app'); print(getwd()); list.files(); renv::restore(prompt = FALSE)"
+
+RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
+ && R -e "Sys.setenv(RENV_PATHS_LIBRARY_ROOT='/srv/shiny-server/my-app/renv/library'); \
+          renv::load('/srv/shiny-server/my-app'); \
+          renv::restore(prompt = FALSE, clean = TRUE)"
+
 
 
 # THEN copy the rest of the app code
