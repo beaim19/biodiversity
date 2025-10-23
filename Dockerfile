@@ -26,19 +26,24 @@ RUN apt-get update && apt-get install -y \
 
 
 # Set a working directory for the app (matches Shiny Server default)
+RUN mkdir -p /srv/shiny-server/my-app
 WORKDIR /srv/shiny-server/my-app
 
 # Copy only renv.lock and renv folder first (so this layer can be cached)
-COPY renv.lock renv.lock
-COPY renv/ renv/
+COPY renv.lock .
+COPY renv/ ./renv/
 
 
 # Install renv and restore packages
-RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
- && R -e "renv::restore(prompt = FALSE)"
+#RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
+# && R -e "setwd('/srv/shiny-server/my-app'); renv::restore(prompt = FALSE)"
+ 
+ RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
+ && R -e "setwd('/srv/shiny-server/my-app'); print(getwd()); list.files(); renv::restore(prompt = FALSE)"
+
 
 # THEN copy the rest of the app code
-COPY . /srv/shiny-server/my-app
+COPY . .
 
 # Ensure correct permissions for Shiny Server
 RUN chown -R shiny:shiny /srv/shiny-server

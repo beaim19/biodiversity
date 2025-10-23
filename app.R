@@ -20,7 +20,7 @@ library(shinyjs)
 library(ggrepel)
 
 #options(shiny.reactlog = TRUE)
-options(shiny.launch.browser = TRUE)
+#options(shiny.launch.browser = TRUE)
 # options(shiny.sanitize.errors = FALSE)
 
 source('R/mod_value_boxes.R')
