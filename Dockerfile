@@ -56,11 +56,14 @@ COPY renv/ ./renv/
 # RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
 # && R -e "setwd('/srv/shiny-server/my-app'); print(getwd()); list.files(); renv::restore(prompt = FALSE)"
 
-RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
- && R -e "Sys.setenv(RENV_PATHS_LIBRARY_ROOT='/srv/shiny-server/my-app/renv/library', \
-                    RENV_PATHS_CACHE='/home/shiny/.cache/R/renv/cache'); \
-          renv::load('/srv/shiny-server/my-app'); \
-          renv::restore(prompt = FALSE, clean = TRUE)"
+          
+# Install renv and restore packages (as shiny user)
+RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" && \
+    su -s /bin/bash shiny -c "R -e \"Sys.setenv(RENV_PATHS_LIBRARY_ROOT='/srv/shiny-server/my-app/renv/library', \
+                                         RENV_PATHS_CACHE='/home/shiny/.cache/R/renv/cache'); \
+                               renv::load('/srv/shiny-server/my-app'); \
+                               renv::restore(prompt = FALSE, clean = TRUE)\""
+
 
 
 
