@@ -25,12 +25,19 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
-# Set environment variables so renv behaves consistently
-ENV RENV_PATHS_LIBRARY_ROOT=/srv/shiny-server/my-app/renv/library
-ENV RENV_PATHS_CACHE=/root/.cache/R/renv/cache
 
 # Set a working directory for the app (matches Shiny Server default)
 WORKDIR /srv/shiny-server/my-app
+
+# Set environment variables so renv behaves consistently
+ENV RENV_PATHS_LIBRARY_ROOT=/srv/shiny-server/my-app/renv/library
+ENV RENV_PATHS_CACHE=/home/shiny/.cache/R/renv/cache
+
+
+# Create cache directory for the 'shiny' user
+RUN mkdir -p /home/shiny/.cache/R/renv/cache && chown -R shiny:shiny /home/shiny/.cache
+
+
 
 #RUN mkdir -p /srv/shiny-server/my-app
 
@@ -50,7 +57,8 @@ COPY renv/ ./renv/
 # && R -e "setwd('/srv/shiny-server/my-app'); print(getwd()); list.files(); renv::restore(prompt = FALSE)"
 
 RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" \
- && R -e "Sys.setenv(RENV_PATHS_LIBRARY_ROOT='/srv/shiny-server/my-app/renv/library'); \
+ && R -e "Sys.setenv(RENV_PATHS_LIBRARY_ROOT='/srv/shiny-server/my-app/renv/library', \
+                    RENV_PATHS_CACHE='/home/shiny/.cache/R/renv/cache'); \
           renv::load('/srv/shiny-server/my-app'); \
           renv::restore(prompt = FALSE, clean = TRUE)"
 
